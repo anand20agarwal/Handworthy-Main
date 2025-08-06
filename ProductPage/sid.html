@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - TechStore</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav">
+            <img src="logo.png" alt="logo" width="15%">
+            <div class="nav-links">
+                <a href="../CatelogPage/sid1.html">← Back to Catalog</a>
+                <a href="#">Categories</a>
+                <a href="#">Deals</a>
+                <a href="#">Support</a>
+                <a href="#">Account</a>
+                <a href="#">Cart (0)</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <!-- Breadcrumb -->
+        <div class="breadcrumb">
+            <a href="#">Home</a> > <a href="#">Electronics</a> > <a href="#">Smartphones</a> > iPhone 14 Pro
+        </div>
+
+        <!-- Product Section -->
+        <div class="product-section fade-in">
+            <!-- Image Gallery -->
+            <div class="image-gallery">
+                <div class="zoom-overlay">🔍 Zoom</div>
+                <img src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=600&h=600&fit=crop" 
+                     alt="iPhone 14 Pro" class="main-image" id="mainImage">
+                <div class="thumbnail-container">
+                    <img src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=80&h=80&fit=crop" 
+                         alt="Front view" class="thumbnail active" onclick="changeImage(this)">
+                    <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=80&h=80&fit=crop" 
+                         alt="Back view" class="thumbnail" onclick="changeImage(this)">
+                    <img src="https://images.unsplash.com/photo-1510557880182-3d4d3cba35a5?w=80&h=80&fit=crop" 
+                         alt="Side view" class="thumbnail" onclick="changeImage(this)">
+                    <img src="https://images.unsplash.com/photo-1567581935884-3349723552ca?w=80&h=80&fit=crop" 
+                         alt="Angle view" class="thumbnail" onclick="changeImage(this)">
+                </div>
+            </div>
+
+            <!-- Product Info -->
+            <div class="product-info">
+                <h1 class="product-title">iPhone 14 Pro - 128GB</h1>
+                
+                <div class="product-rating">
+                    <div class="stars">★★★★☆</div>
+                    <span class="rating-text">4.5 (2,847 reviews)</span>
+                </div>
+
+                <div class="price-section">
+                    <span class="current-price">₹75,149</span>
+                    <span class="original-price">₹95,149</span>
+                    <span class="discount">10% OFF</span>
+                </div>
+
+                <div class="product-description">
+                    Experience the power of the iPhone 14 Pro featuring the A16 Bionic chip, Pro camera system with 48MP main camera, and the innovative Dynamic Island. Available in stunning Space Black, Silver, Gold, and Deep Purple finishes.
+                </div>
+
+                <!-- Options -->
+                <div class="product-options">
+                    <div class="option-group">
+                        <label class="option-label">Storage:</label>
+                        <div class="size-options">
+                            <div class="size-option selected">128GB</div>
+                            <div class="size-option">256GB</div>
+                            <div class="size-option">512GB</div>
+                            <div class="size-option">1TB</div>
+                        </div>
+                    </div>
+
+                    <div class="option-group">
+                        <label class="option-label">Color:</label>
+                        <div class="color-options">
+                            <div class="color-option black selected"></div>
+                            <div class="color-option blue"></div>
+                            <div class="color-option red"></div>
+                            <div class="color-option green"></div>
+                        </div>
+                    </div>
+
+                    <div class="option-group">
+                        <label class="option-label">Quantity:</label>
+                        <div class="quantity-selector">
+                            <button class="quantity-btn" onclick="changeQuantity(-1)">-</button>
+                            <input type="number" class="quantity-input" value="1" min="1" max="10" id="quantity">
+                            <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="btn btn-primary" onclick="addToCart()">Add to Cart</button>
+                    <button class="btn btn-secondary">Buy Now</button>
+                    <button class="btn btn-wishlist" onclick="addToWishlist()">♥</button>
+                </div>
+
+                <!-- Features -->
+                <div class="features">
+                    <div class="feature">
+                        <div class="feature-icon">🚚</div>
+                        <div>
+                            <strong>Free Shipping</strong><br>
+                            Orders over $50
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">↩️</div>
+                        <div>
+                            <strong>30-Day Returns</strong><br>
+                            Easy returns
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🔒</div>
+                        <div>
+                            <strong>Secure Payment</strong><br>
+                            SSL encrypted
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">📞</div>
+                        <div>
+                            <strong>24/7 Support</strong><br>
+                            Customer service
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <div class="tab-nav">
+                <button class="tab-btn active" onclick="showTab('description')">Description</button>
+                <button class="tab-btn" onclick="showTab('specifications')">Specifications</button>
+                <button class="tab-btn" onclick="showTab('reviews')">Reviews</button>
+                <button class="tab-btn" onclick="showTab('shipping')">Shipping</button>
+            </div>
+
+            <div class="tab-content active" id="description">
+                <h3>Product Description</h3>
+                <p>The iPhone 14 Pro represents the pinnacle of smartphone innovation. With its cutting-edge A16 Bionic chip, this device delivers unprecedented performance and efficiency. The Pro camera system, featuring a 48MP main camera, captures stunning photos and videos with remarkable detail and clarity.</p>
+                
+                <h4>Key Features:</h4>
+                <ul>
+                    <li>A16 Bionic chip for ultimate performance</li>
+                    <li>48MP Pro camera system with 2x Telephoto</li>
+                    <li>Dynamic Island - a magical new way to interact with iPhone</li>
+                    <li>All-day battery life with up to 23 hours of video playback</li>
+                    <li>Ceramic Shield front, tougher than any smartphone glass</li>
+                    <li>Emergency SOS via satellite</li>
+                </ul>
+
+                <p>Available in four stunning finishes: Space Black, Silver, Gold, and Deep Purple. Each iPhone 14 Pro comes with a USB-C to Lightning cable and is compatible with MagSafe accessories.</p>
+            </div>
+
+            <div class="tab-content" id="specifications">
+                <h3>Technical Specifications</h3>
+                <table class="specs-table">
+                    <tr><th>Display</th><td>6.1-inch Super Retina XDR OLED</td></tr>
+                    <tr><th>Resolution</th><td>2556 x 1179 pixels at 460 ppi</td></tr>
+                    <tr><th>Processor</th><td>A16 Bionic chip</td></tr>
+                    <tr><th>Storage</th><td>128GB, 256GB, 512GB, 1TB</td></tr>
+                    <tr><th>Camera</th><td>48MP Main, 12MP Ultra Wide, 12MP Telephoto</td></tr>
+                    <tr><th>Front Camera</th><td>12MP TrueDepth</td></tr>
+                    <tr><th>Battery</th><td>Up to 23 hours video playback</td></tr>
+                    <tr><th>Operating System</th><td>iOS 16</td></tr>
+                    <tr><th>Connectivity</th><td>5G, Wi-Fi 6, Bluetooth 5.3</td></tr>
+                    <tr><th>Water Resistance</th><td>IP68</td></tr>
+                    <tr><th>Dimensions</th><td>5.81 x 2.81 x 0.31 inches</td></tr>
+                    <tr><th>Weight</th><td>7.27 ounces</td></tr>
+                </table>
+            </div>
+
+            <div class="tab-content" id="reviews">
+                <h3>Customer Reviews</h3>
+                <div class="review-summary">
+                    <div class="review-score">
+                        <div class="review-score-number">4.5</div>
+                        <div class="stars">★★★★☆</div>
+                        <div>2,847 reviews</div>
+                    </div>
+                    <div class="review-bars">
+                        <div class="review-bar">
+                            <span>5★</span>
+                            <div class="bar-fill">
+                                <div class="bar-fill-inner" style="width: 60%"></div>
+                            </div>
+                            <span>60%</span>
+                        </div>
+                        <div class="review-bar">
+                            <span>4★</span>
+                            <div class="bar-fill">
+                                <div class="bar-fill-inner" style="width: 30%"></div>
+                            </div>
+                            <span>30%</span>
+                        </div>
+                        <div class="review-bar">
+                            <span>3★</span>
+                            <div class="bar-fill">
+                                <div class="bar-fill-inner" style="width: 7%"></div>
+                            </div>
+                            <span>7%</span>
+                        </div>
+                        <div class="review-bar">
+                            <span>2★</span>
+                            <div class="bar-fill">
+                                <div class="bar-fill-inner" style="width: 2%"></div>
+                            </div>
+                            <span>2%</span>
+                        </div>
+                        <div class="review-bar">
+                            <span>1★</span>
+                            <div class="bar-fill">
+                                <div class="bar-fill-inner" style="width: 1%"></div>
+                            </div>
+                            <span>1%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-name">PV Muhsin</div>
+                        <div class="review-date">July 15, 2025</div>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                    <p>Amazing camera quality and the Dynamic Island is such a cool feature! Battery life is excellent and the build quality feels premium. Highly recommend!</p>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-name">Vishal</div>
+                        <div class="review-date">July 18, 2025</div>
+                    </div>
+                    <div class="stars">★★★★☆</div>
+                    <p>Great phone overall. The A16 chip is incredibly fast and handles everything I throw at it. Only complaint is the price, but you get what you pay for.</p>
+                </div>
+
+                <div class="review-item">
+                    <div class="review-header">
+                        <div class="reviewer-name">Venkatesh</div>
+                        <div class="review-date">July 10, 2025</div>
+                    </div>
+                    <div class="stars">★★★★★</div>
+                    <p>Upgraded from iPhone 12 and the difference is night and day. The camera improvements are incredible, especially in low light. Love the new colors too!</p>
+                </div>
+            </div>
+
+            <div class="tab-content" id="shipping">
+                <h3>Shipping Information</h3>
+                <h4>Delivery Options:</h4>
+                <ul>
+                    <li><strong>Standard Shipping (5-7 business days)</strong> - Free on orders over ₹...</li>
+                    <li><strong>Express Shipping (2-3 business days)</strong> - ₹...</li>
+                    <li><strong>Overnight Shipping (1 business day)</strong> - ₹...</li>
+                    <li><strong>Same Day Delivery</strong> - Available in select cities for ₹...</li>
+                </ul>
+
+                <h4>Return Policy:</h4>
+                <p>We offer a 30-day return policy for all items. Items must be in original condition with all accessories and packaging. Return shipping is free for defective items.</p>
+
+                <h4>Warranty:</h4>
+                <p>All products come with a 1-year limited warranty. Extended warranty options are available at checkout.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart Notification -->
+    <div class="cart-notification" id="cartNotification">
+        Item added to cart! 🛒
+    </div>

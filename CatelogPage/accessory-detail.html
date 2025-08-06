@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessory Details</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="product-detail-container">
+        <div class="product-detail-header">
+            <button class="back-button" onclick="window.close()">← Back</button>
+            <h1>Accessory Details</h1>
+        </div>
+        
+        <div class="product-detail-content">
+            <div class="product-images-section">
+                <div class="main-image-container">
+                    <img id="mainAccessoryImage" src="" alt="" class="main-product-image">
+                </div>
+                <div class="thumbnail-images" id="thumbnailImages">
+                    <!-- Thumbnails will be populated by JavaScript -->
+                </div>
+            </div>
+            
+            <div class="product-info-section">
+                <div class="product-basic-info">
+                    <h1 class="product-title" id="accessoryTitle"></h1>
+                    <div class="product-subtitle" id="accessorySubtitle"></div>
+                    
+                    <div class="product-rating">
+                        <div class="stars" id="accessoryStars"></div>
+                        <span class="rating-text" id="accessoryRating"></span>
+                    </div>
+                    
+                    <div class="product-pricing">
+                        <div class="current-price" id="accessoryPrice"></div>
+                        <div class="original-price" id="accessoryOriginalPrice"></div>
+                        <div class="discount-badge" id="accessoryDiscount"></div>
+                    </div>
+                    
+                    <div class="stock-status in-stock" id="accessoryStock"></div>
+                </div>
+                
+                <div class="product-description">
+                    <h3>Description</h3>
+                    <p id="accessoryDescription"></p>
+                </div>
+                
+                <div class="product-features">
+                    <h3>Key Features</h3>
+                    <ul id="accessoryFeatures"></ul>
+                </div>
+                
+                <div class="product-specifications">
+                    <h3>Specifications</h3>
+                    <div class="specs-grid" id="accessorySpecs"></div>
+                </div>
+                
+                <div class="product-actions">
+                    <button class="add-to-cart-btn-large" id="addToCartBtn">
+                        Add to Cart
+                    </button>
+                    <button class="buy-now-btn" id="buyNowBtn">
+                        Buy Now
+                    </button>
+                </div>
+                
+                <div class="product-guarantees">
+                    <div class="guarantee-item">
+                        <span class="guarantee-icon">🛡️</span>
+                        <span>1 Year Warranty</span>
+                    </div>
+                    <div class="guarantee-item">
+                        <span class="guarantee-icon">🚚</span>
+                        <span>Free shipping within 2-3 business days</span>
+                    </div>
+                    <div class="guarantee-item">
+                        <span class="guarantee-icon">↩️</span>
+                        <span>Easy returns within 30 days</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="accessory-detail.js"></script>
+</body>
+</html>

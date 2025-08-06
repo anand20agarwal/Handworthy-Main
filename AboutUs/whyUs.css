@@ -1,0 +1,272 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    overflow-x: hidden;
+    background-color: white; /* Added white background */
+}
+
+/* Header */
+header {
+    background-color: #2e7c26;
+    color: white;
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+#logo {
+    filter: brightness(0) invert(1);
+    max-width: 150px;
+}
+
+/* Navigation links */
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-weight: bold;
+}
+
+.nav-links a:hover {
+    color: #ffd700;
+}
+
+/* Mobile Menu */
+.mobile-menu {
+    display: none;
+    font-size: 1.8rem;
+    background: white;
+    color: #333;
+    padding: 0.4rem 0.8rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Main Layout */
+main {
+    padding-top: 100px; /* to offset fixed header */
+    background-color: white; /* Ensure main has white background */
+}
+
+/* Footer - Updated for better contrast on white background */
+footer {
+    background: #333; /* Changed from #2c3e50 to darker gray for better contrast */
+    color: white;
+    text-align: center;
+    padding: 40px 20px 20px;
+    margin-top: 50px;
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.footer-tagline {
+    font-size: 1.3rem;
+    font-style: italic;
+    color: #ecf0f1;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #555; /* Lighter border color */
+}
+
+footer p {
+    margin: 10px 0;
+    color: #bdc3c7;
+    font-size: 0.9rem;
+}
+
+/* Why Handworthy Section - Updated for white background */
+.section.why-handworthy {
+    background: white; /* Changed from gradient to white */
+    color: #333; /* Changed text color for contrast */
+    padding: 80px 2rem;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0; /* Added subtle border for separation */
+}
+
+.section.why-handworthy h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #2e7c26; /* Changed to match header green for brand consistency */
+}
+
+.section.why-handworthy p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+    color: #555; /* Darker color for better readability on white */
+}
+
+/* Features Grid */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Feature Card - Updated for white background */
+.feature-card {
+    background-color: #f8f9fa; /* Light gray background for cards */
+    border-radius: 15px;
+    padding: 2rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Softer shadow */
+    border: 1px solid #e9ecef; /* Added subtle border */
+    color: #333; /* Dark text for readability */
+}
+
+.feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+    background-color: #fff; /* Pure white on hover */
+}
+
+.feature-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: #2e7c26; /* Brand green for icons */
+}
+
+.feature-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    color: #2e7c26; /* Brand green for headings */
+}
+
+.feature-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #555; /* Darker gray for better readability */
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+    /* Reduce header padding for mobile */
+    header {
+        padding: 0.5rem 0;
+    }
+    
+    /* Adjust nav container padding */
+    nav {
+        padding: 0 1rem;
+    }
+    
+    /* Adjust logo size for mobile */
+    #logo {
+        max-width: 120px;
+        min-width: 100px;
+    }
+    
+    /* Show mobile menu button */
+    .mobile-menu {
+        display: block;
+        font-size: 1.5rem;
+        padding: 0.3rem 0.6rem;
+    }
+    
+    /* Hide and position nav links for mobile */
+    .nav-links {
+        position: fixed;
+        top: 65px;
+        left: 0;
+        width: 100%;
+        background-color: #2e7c26;
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        transform: translateY(-100%);
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        z-index: 999;
+    }
+    
+    /* Show nav links when active */
+    .nav-links.active {
+        transform: translateY(0);
+        opacity: 1;
+        visibility: visible;
+    }
+    
+    /* Style mobile nav items */
+    .nav-links li {
+        width: 100%;
+        text-align: center;
+        border-bottom: 1px solid #3a8a31;
+    }
+    
+    .nav-links li:last-child {
+        border-bottom: none;
+    }
+    
+    .nav-links a {
+        display: block;
+        padding: 1rem;
+        width: 100%;
+        font-size: 1.1rem;
+    }
+    
+    /* Keep hover effect */
+    .nav-links a:hover {
+        background-color: #3a8a31;
+    }
+    
+    /* Main content mobile adjustments */
+    main {
+        padding-top: 80px; /* Adjusted for smaller mobile header */
+    }
+    
+    .section.why-handworthy {
+        padding: 60px 1rem;
+    }
+    
+    .section.why-handworthy h2 {
+        font-size: 2rem;
+    }
+
+    .feature-icon {
+        font-size: 2.5rem;
+    }
+
+    .feature-card h3 {
+        font-size: 1.2rem;
+    }
+
+    .feature-card p {
+        font-size: 0.95rem;
+    }
+    
+    .footer-tagline {
+        font-size: 1.1rem;
+    }
+}

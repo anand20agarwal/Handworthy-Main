@@ -1,3 +1,122 @@
+// Clear all filters (for the main Clear button next to Apply)
+function clearAllFilters() {
+    // Uncheck all checkboxes
+    document.querySelectorAll('.checkbox').forEach(cb => cb.classList.remove('checked'));
+    // Reset selectedFilters
+    for (const key in selectedFilters) {
+        delete selectedFilters[key];
+    }
+    // Update UI
+    updateSelectedFilters();
+    // Show all products
+    renderProducts(productsData);
+    // Optionally, reset search input
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput) searchInput.value = '';
+}
+function applyFilters() {
+    let filtered = productsData;
+    // Search filter
+    const searchInput = document.getElementById('searchInput');
+    if (searchInput && searchInput.value.trim() !== '') {
+        const q = searchInput.value.trim().toLowerCase();
+        filtered = filtered.filter(p => p.name.toLowerCase().includes(q) || (p.description && p.description.toLowerCase().includes(q)));
+    }
+
+    // Category filter (only one category at a time)
+    if (selectedFilters['category']) {
+        const cat = selectedFilters['category'].toLowerCase();
+        filtered = filtered.filter(product => {
+            // Show in headphone filter if name or category contains 'headphone'
+            if (cat === 'headphone') {
+                return (product.category && product.category.toLowerCase().includes('headphone')) || (product.name && product.name.toLowerCase().includes('headphone'));
+            }
+            // Show in smartwatch filter if name or category contains 'smartwatch'
+            if (cat === 'smartwatch') {
+                return (product.category && product.category.toLowerCase().includes('smartwatch')) || (product.name && product.name.toLowerCase().includes('smartwatch'));
+            }
+            // Show in cable filter if name or category contains 'cable'
+            if (cat === 'cable') {
+                return (product.category && product.category.toLowerCase().includes('cable')) || (product.name && product.name.toLowerCase().includes('cable'));
+            }
+            // Default: match category
+            return product.category && product.category.toLowerCase().includes(cat);
+        });
+    }   
+
+    // Subfilters (headphone, smartwatch, cable)
+    filtered = filtered.filter(product => {
+        // Headphone subfilters
+        if ((product.category && product.category.toLowerCase().includes('headphone')) || (product.name && product.name.toLowerCase().includes('headphone'))) {
+            if (selectedFilters['headphone-over-ear'] && !product.name.toLowerCase().includes('over')) return false;
+            if (selectedFilters['headphone-in-ear'] && !product.name.toLowerCase().includes('in-ear')) return false;
+            if (selectedFilters['headphone-on-ear'] && !product.name.toLowerCase().includes('on-ear')) return false;
+            if (selectedFilters['headphone-black'] && !product.name.toLowerCase().includes('black')) return false;
+            if (selectedFilters['headphone-white'] && !product.name.toLowerCase().includes('white')) return false;
+            if (selectedFilters['headphone-blue'] && !product.name.toLowerCase().includes('blue')) return false;
+        }
+        // Smartwatch subfilters
+        if ((product.category && product.category.toLowerCase().includes('smartwatch')) || (product.name && product.name.toLowerCase().includes('smartwatch'))) {
+            if (selectedFilters['smartwatch-silicone'] && !product.description.toLowerCase().includes('silicone')) return false;
+            if (selectedFilters['smartwatch-leather'] && !product.description.toLowerCase().includes('leather')) return false;
+            if (selectedFilters['smartwatch-metal'] && !product.description.toLowerCase().includes('metal')) return false;
+            if (selectedFilters['smartwatch-ios'] && !product.description.toLowerCase().includes('ios')) return false;
+            if (selectedFilters['smartwatch-android'] && !product.description.toLowerCase().includes('android')) return false;
+        }
+        // Cable subfilters
+        if ((product.category && product.category.toLowerCase().includes('cable')) || (product.name && product.name.toLowerCase().includes('cable'))) {
+            if (selectedFilters['cable-usb-c'] && !product.name.toLowerCase().includes('usb-c')) return false;
+            if (selectedFilters['cable-lightning'] && !product.name.toLowerCase().includes('lightning')) return false;
+            if (selectedFilters['cable-micro-usb'] && !product.name.toLowerCase().includes('micro usb')) return false;
+            if (selectedFilters['cable-1m'] && !product.description.toLowerCase().includes('1m')) return false;
+            if (selectedFilters['cable-2m'] && !product.description.toLowerCase().includes('2m')) return false;
+        }
+        return true;
+    });
+
+    // Always update the main grid
+    const grid = document.getElementById('productsGrid');
+    if (grid) renderProducts(filtered);
+}
+let productsData = [];
+
+function fetchProducts() {
+    fetch('products.json')
+        .then(response => response.json())
+        .then(data => {
+            productsData = data;
+            renderProducts(productsData);
+        })
+        .catch(error => {
+            console.error('Error loading products:', error);
+        });
+}
+
+function renderProducts(data) {
+    const grid = document.getElementById('productsGrid');
+    if (!grid) return;
+    if (!data || data.length === 0) {
+        grid.innerHTML = '<div style="color:#86868b;text-align:center;padding:30px;">No products found</div>';
+        return;
+    }
+    grid.innerHTML = data.map(product => `
+        <div class="product-card">
+            <img src="${product.image}" alt="${product.name}" class="product-image">
+            <div class="product-info">
+                <div class="product-title">${product.name}</div>
+                <div class="product-description">${product.description}</div>
+                <div class="product-features">${product.features ? product.features.join(', ') : ''}</div>
+                <div class="product-price">₹${product.price} <span class="original-price">${product.originalPrice ? '₹' + product.originalPrice : ''}</span></div>
+                <div class="product-rating">Rating: ${product.rating || '-'} ★</div>
+                <div class="product-stock">${product.stock}</div>
+            </div>
+        </div>
+    `).join('');
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    fetchProducts();
+});
 function toggleMenu() {
     const menu = document.getElementById('menuPanel');
     menu.classList.toggle('show');
@@ -102,26 +221,65 @@ function getFilterText(filterId) {
         'sort-price-high': 'Price: High to Low',
         'sort-newest': 'Newest First',
         'sort-popular': 'Most Popular',
-        'sort-rating': 'Highest Rated'
+        'sort-rating': 'Highest Rated',
+        // Headphone
+        'headphone-over-ear': 'Over-Ear',
+        'headphone-in-ear': 'In-Ear',
+        'headphone-on-ear': 'On-Ear',
+        'headphone-black': 'Black',
+        'headphone-white': 'White',
+        'headphone-blue': 'Blue',
+        // Smartwatch
+        'smartwatch-silicone': 'Silicone',
+        'smartwatch-leather': 'Leather',
+        'smartwatch-metal': 'Metal',
+        'smartwatch-ios': 'iOS',
+        'smartwatch-android': 'Android',
+        // Cable
+        'cable-usb-c': 'USB-C',
+        'cable-lightning': 'Lightning',
+        'cable-micro-usb': 'Micro USB',
+        'cable-1m': '1 Meter',
+        'cable-2m': '2 Meter',
+        // Category
+        'category': 'Category',
     };
     return textMap[filterId] || filterId;
 }
 
 function clearCategory(category) {
-    // Clear all checkboxes in the category
-    document.querySelectorAll(`#dropdown-${category} .checkbox`).forEach(cb => {
+    // Clear all checkboxes in the category (support for all filter types)
+    let selector = '';
+    if (category === 'category') {
+        selector = '#dropdown-category .checkbox';
+    } else if (category.startsWith('headphone')) {
+        selector = '[id^="check-headphone-"]';
+    } else if (category.startsWith('smartwatch')) {
+        selector = '[id^="check-smartwatch-"]';
+    } else if (category.startsWith('cable')) {
+        selector = '[id^="check-cable-"]';
+    } else {
+        selector = `#dropdown-${category} .checkbox`;
+    }
+    document.querySelectorAll(selector).forEach(cb => {
         cb.classList.remove('checked');
     });
-    
-    // Remove from selectedFilters
+
+    // Remove from selectedFilters (all relevant keys)
     Object.keys(selectedFilters).forEach(key => {
-        if (key.includes(category) || 
-            (category === 'iphone-models' && key.startsWith('iphone-'))) {
+        if (
+            (category === 'category' && key === 'category') ||
+            (category.startsWith('headphone') && key.startsWith('headphone-')) ||
+            (category.startsWith('smartwatch') && key.startsWith('smartwatch-')) ||
+            (category.startsWith('cable') && key.startsWith('cable-')) ||
+            (category === 'iphone-models' && key.startsWith('iphone-'))
+        ) {
             delete selectedFilters[key];
         }
     });
-    
+
     updateSelectedFilters();
+    applyFilters();
 }
 
 function updateSelectedFilters() {
@@ -183,243 +341,36 @@ function getFiltersByCategory(category) {
     return categoryFilters;
 }
 
-// Apply filters function
-function applyFilters() {
-    const filters = getSelectedFilters();
-    
-    // Close all dropdowns
-    document.querySelectorAll('.dropdown-content').forEach(dd => {
-        dd.classList.remove('open');
+// Show/hide category-specific filters
+function showCategoryFilters(category) {
+    document.querySelectorAll('.category-filters').forEach(el => {
+        el.style.display = 'none';
     });
-    document.querySelectorAll('.dropdown-arrow').forEach(arr => {
-        arr.classList.remove('open');
-    });
-    
-    // You can customize this function to handle your filtering logic
-    console.log('Applying filters:', filters);
-    
-    // Example: Call your existing filter functions
-    // filterProducts(filters);
-    
-    // Show success message or update UI
-    showApplyMessage();
+    if (category) {
+        const filterSection = document.getElementById(`filters-${category}`);
+        if (filterSection) filterSection.style.display = '';
+    }
 }
 
-function showApplyMessage() {
-    const button = document.querySelector('.apply-button');
-    const originalText = button.textContent;
-    
-    button.textContent = 'Applied ✓';
-    button.style.background = '#28a745';
-    
-    setTimeout(() => {
-        button.textContent = originalText;
-        button.style.background = 'linear-gradient(135deg, #667eea, #764ba2)';
-    }, 2000);
-}
-
-
-function clearAllFilters() {
-    // Clear the selectedFilters object
-    selectedFilters = {};
-    
-    // Clear all checkboxes (filter checkboxes)
-    document.querySelectorAll('.checkbox').forEach(cb => {
-        cb.classList.remove('checked');
+// Handle category selection
+function selectCategory(event, category) {
+    event.stopPropagation();
+    // Uncheck all category checkboxes
+    document.querySelectorAll('#dropdown-category .checkbox').forEach(cb => cb.classList.remove('checked'));
+    // Set selected
+    const checkbox = document.getElementById(`check-category-${category}`);
+    checkbox.classList.add('checked');
+    window.selectedCategory = category;
+    // Remove all category filters from selectedFilters
+    Object.keys(selectedFilters).forEach(key => {
+        if (key.startsWith('headphone-') || key.startsWith('smartwatch-') || key.startsWith('cable-')) {
+            delete selectedFilters[key];
+        }
     });
-    
-    // Clear all selected sort items
-    document.querySelectorAll('.checklist-item').forEach(item => {
-        item.classList.remove('selected');
-    });
-    
-    // Update the selected filters display
+    // Add to selectedFilters
+    selectedFilters['category'] = category.charAt(0).toUpperCase() + category.slice(1);
+    showCategoryFilters(category);
     updateSelectedFilters();
-    
-    // Optional: Close all dropdowns
-    document.querySelectorAll('.dropdown-content').forEach(dd => {
-        dd.classList.remove('open');
-    });
-    document.querySelectorAll('.dropdown-arrow').forEach(arr => {
-        arr.classList.remove('open');
-    });
-    
-    console.log('All filters cleared');
 }
 
-
-
-// Dummy accessories data
-
-const accessoriesData = [
-    {
-        id: 'acc1',
-        name: 'AirPods Pro (2nd Gen)',
-        description: 'Active Noise Cancellation',
-        price: 16600,
-        originalPrice: 20750,
-        image: 'https://images.unsplash.com/photo-1606841837239-c5a1a4a07af7?w=400&h=300&fit=crop&crop=center',
-        category: 'earphones',
-        features: ['Wireless'],
-        stock: 'In Stock',
-        rating: 4.8
-    },
-    {
-        id: 'acc2',
-        name: 'MagSafe Power Bank',
-        description: '10,000mAh Wireless Charging',
-        price: 7470,
-        originalPrice: 10770,
-        image: 'https://www.notebookcheck.net/fileadmin/_processed_/b/4/csm_UGREEN_15W_Magsafe_Power_Bank_10000mAh_I_8_e6d5d5866c.jpg',
-        category: 'powerbank',
-        features: ['MagSafe'],
-        stock: 'In Stock',
-        rating: 4.6
-    },
-    {
-        id: 'acc3',
-        name: 'iPhone 15 Pro Case',
-        description: 'Premium Leather Case',
-        price: 3820,
-        originalPrice: 4980,
-        image: 'https://images.unsplash.com/photo-1556656793-08538906a9f8?w=400&h=300&fit=crop&crop=center',
-        category: 'mobile',
-        features: ['Leather'],
-        stock: 'In Stock',
-        rating: 4.7
-    },
-    {
-        id: 'acc4',
-        name: 'Bluetooth Speaker',
-        description: 'Portable Wireless Speaker',
-        price: 6640,
-        originalPrice: 8300,
-        image: 'https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=300&fit=crop&crop=center',
-        category: 'bluetooth speaker',
-        features: ['Waterproof'],
-        stock: 'Limited',
-        rating: 4.5
-    },
-    {
-        id: 'acc5',
-        name: 'USB-C to Lightning Cable',
-        description: '6ft Fast Charging Cable',
-        price: 2075,
-        originalPrice: 3320,
-        image: 'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=400&h=300&fit=crop&crop=center',
-        category: 'cable',
-        features: ['MFi Certified'],
-        stock: 'In Stock',
-        rating: 4.4
-    },
-    {
-        id: 'acc6',
-        name: '20W USB-C Adapter',
-        description: 'Fast Charging Wall Adapter for iPhone',
-        price: 1660,
-        originalPrice: 2490,
-        image: 'https://tse2.mm.bing.net/th/id/OIP.xJRGwEDkO_NfgZdYb7rJEwAAAA?r=0&rs=1&pid=ImgDetMain&o=7&rm=3',
-        category: 'adapter',
-        features: ['20W Output'],
-        stock: 'In Stock',
-        rating: 4.6
-    },
-    {
-        id: 'acc7',
-        name: 'Wireless Charger Pad',
-        description: '15W Fast Wireless Charging Pad',
-        price: 2900,
-        originalPrice: 4150,
-        image: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=400&h=300&fit=crop&crop=center',
-        category: 'charger',
-        features: ['15W Fast Charging'],
-        stock: 'In Stock',
-        rating: 4.3
-    },
-    {
-        id: 'acc8',
-        name: 'Bluetooth Headphones',
-        description: 'Over-ear Wireless Headphones',
-        price: 10800,
-        originalPrice: 14940,
-        image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop&crop=center',
-        category: 'bluetooth',
-        features: ['30hr Battery'],
-        stock: 'In Stock',
-        rating: 4.7
-    }
-];
-
-
-// Function to render accessories
-function renderAccessories() {
-    const accessoriesGrid = document.getElementById('accessoriesGrid');
-    
-    accessoriesGrid.innerHTML = accessoriesData.map(accessory => `
-        <div class="accessory-card" onclick="viewAccessory('${accessory.id}')">
-            <div class="stock-status ${accessory.stock === 'Limited' ? 'limited' : accessory.stock === 'Out of Stock' ? 'out' : ''}">${accessory.stock}</div>
-            <img src="${accessory.image}" alt="${accessory.name}" class="accessory-image">
-            <div class="accessory-info">
-                <div class="accessory-name">${accessory.name}</div>
-                <div class="accessory-description">${accessory.description}</div>
-                <div class="accessory-features">
-                    ${accessory.features.map(feature => `<span class="feature-badge">${feature}</span>`).join('')}
-                </div>
-                <div class="accessory-price">
-                ₹${accessory.price} 
-                ${accessory.originalPrice ? `<span style="text-decoration: line-through; color: #86868b; font-size: 16px; font-weight: 400;">₹${accessory.originalPrice}</span>` : ''}
-                  </div>
-
-                <button class="add-to-cart-btn" onclick="addAccessoryToCart(event, '${accessory.id}')">
-                    Add to Cart
-                </button>
-            </div>
-        </div>
-    `).join('');
-}
-
-// Function to add accessory to cart
-function addAccessoryToCart(event, accessoryId) {
-    event.stopPropagation(); // Prevent card click
-    const accessory = accessoriesData.find(acc => acc.id === accessoryId);
-    if (!accessory) return;
-    // Add to cart logic using localStorage
-    let cart = JSON.parse(localStorage.getItem('cart')) || [];
-    cart.push(accessory);
-    localStorage.setItem('cart', JSON.stringify(cart));
-    console.log('Adding to cart:', accessory);
-    // Show notification
-    showNotification(`${accessory.name} added to cart!`);
-    // Update cart badge (integrate with your existing cart system)
-    // updateCartBadge();
-}
-
-function viewAccessory(accessoryId) {
-    // Store accessory ID in sessionStorage to retrieve on detail page
-    sessionStorage.setItem('selectedAccessoryId', accessoryId);
-    
-    // Open the accessory detail page in a new window/tab
-    window.open('accessory-detail.html', '_blank');
-}
-
-// Function to show notification (you might already have this)
-function showNotification(message) {
-    const notification = document.getElementById('notification');
-    if (notification) {
-        notification.textContent = message;
-        notification.style.display = 'block';
-        notification.style.opacity = '1';
-        
-        setTimeout(() => {
-            notification.style.opacity = '0';
-            setTimeout(() => {
-                notification.style.display = 'none';
-            }, 300);
-        }, 3000);
-    }
-}
-
-// Initialize accessories when page loads
-document.addEventListener('DOMContentLoaded', function() {
-    renderAccessories();
-});
+// (Removed legacy accessory/cart code that may interfere with filtering)

@@ -7,7 +7,32 @@
   <link rel="stylesheet" href="cart.css">
   <script src="cart.js" defer></script>
 </head>
+<body><!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Cart</title>
+  <link rel="stylesheet" href="cart.css">
+  <script src="cart.js" defer></script>
+</head>
 <body>
+  <div class="container">
+    <header class="header">
+      <a href="sid.html" class="back-nav">← Back to Catalog</a><br><br>
+      <h1>Your Shopping Cart</h1>
+      <p class="subtitle">Review your selected items</p>
+    </header>
+
+    <div class="cart-container">
+      <div class="cart-title">Cart Items</div>
+      <div class="cart-items" id="cartItems"></div>
+      <div class="cart-summary" id="cartSummary"></div>
+      <button class="checkout-btn" id="checkoutBtn">Proceed to Checkout</button>
+    </div>
+  </div>
+</body>
+</html>
   <div class="container">
     <header class="header">
       <a href="sid.html" class="back-nav">← Back to Catalog</a><br><br>

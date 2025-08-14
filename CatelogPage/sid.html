@@ -98,207 +98,178 @@
             <button class="menu-close" onclick="toggleMenu()">×</button>
         </div>
         <div class="menu-items">
-            <!-- Sort Section -->
-            <div class="sort-section">
-                <div class="menu-item" onclick="toggleDropdown('sort')">
+            <!-- Product Category Filter -->
+            <div class="filter-section">
+                <div class="menu-item" onclick="toggleDropdown('category')">
                     <div class="menu-item-header">
                         <div class="menu-item-left">
-                           
-                            <div class="menu-item-icon">
-                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                   
-                                    <rect x="2" y="3" width="12" height="1.5" fill="Black" rx="0.75"/>
-                                    <rect x="2" y="7.25" width="8" height="1.5" fill="Black" rx="0.75"/>
-                                    <rect x="2" y="11.5" width="6" height="1.5" fill="Black" rx="0.75"/>
-                                </svg>
-                            </div>
-                            <div class="menu-item-text">Sort Products</div>
+                            <div class="menu-item-icon">🗂️</div>
+                            <div class="menu-item-text">Product Category</div>
                         </div>
-                        <div class="dropdown-arrow" id="arrow-sort">▼</div>
+                        <div class="dropdown-arrow" id="arrow-category">▼</div>
                     </div>
-                    <div class="dropdown-content" id="dropdown-sort" style="box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                        <div class="checklist-item" onclick="toggleSortSelection(event, 'sort-price-low')">
-                            <div class="checklist-text">Price: Low to High</div>
+                    <div class="dropdown-content" id="dropdown-category">
+                        <div class="checklist-item" onclick="selectCategory(event, 'headphone')">
+                            <div class="checkbox" id="check-category-headphone"></div>
+                            <div class="checklist-text">Headphone</div>
                         </div>
-                        <div class="checklist-item" onclick="toggleSortSelection(event, 'sort-price-high')">
-                            <div class="checklist-text">Price: High to Low</div>
+                        <div class="checklist-item" onclick="selectCategory(event, 'smartwatch')">
+                            <div class="checkbox" id="check-category-smartwatch"></div>
+                            <div class="checklist-text">Smartwatch</div>
                         </div>
-                        <div class="checklist-item" onclick="toggleSortSelection(event, 'sort-newest')">
-                            <div class="checklist-text">Newest First</div>
+                        <div class="checklist-item" onclick="selectCategory(event, 'cable')">
+                            <div class="checkbox" id="check-category-cable"></div>
+                            <div class="checklist-text">Cable</div>
                         </div>
-                        <div class="checklist-item" onclick="toggleSortSelection(event, 'sort-popular')">
-                            <div class="checklist-text">Most Popular</div>
-                        </div>
-                        <div class="checklist-item" onclick="toggleSortSelection(event, 'sort-rating')">
-                            <div class="checklist-text">Highest Rated</div>
-                        </div>
+                        <button class="clear-all" onclick="clearCategory('category')">Clear All</button>
                     </div>
                 </div>
             </div>
-            
-           
-            <div class="menu-separator"></div>
-            
-            
-            <div class="filter-section">
-                <div class="menu-item" onclick="toggleDropdown('iphone-models')">
+
+            <!-- Headphone Filters -->
+            <div class="filter-section category-filters" id="filters-headphone" style="display:none;">
+                <div class="menu-item" onclick="toggleDropdown('headphone-type')">
                     <div class="menu-item-header">
                         <div class="menu-item-left">
-                            <div class="menu-item-icon">📱</div>
-                            <div class="menu-item-text">iPhone Models</div>
+                            <div class="menu-item-icon">🎧</div>
+                            <div class="menu-item-text">Type</div>
                         </div>
-                        <div class="dropdown-arrow" id="arrow-iphone-models">▼</div>
+                        <div class="dropdown-arrow" id="arrow-headphone-type">▼</div>
                     </div>
-                    <div class="dropdown-content" id="dropdown-iphone-models">
-                        <div class="checklist-item" onclick="toggleCheck(event, 'iphone-15-pro-max')">
-                            <div class="checkbox" id="check-iphone-15-pro-max"></div>
-                            <div class="checklist-text">iPhone 15 Pro Max</div>
+                    <div class="dropdown-content" id="dropdown-headphone-type">
+                        <div class="checklist-item" onclick="toggleCheck(event, 'headphone-over-ear')">
+                            <div class="checkbox" id="check-headphone-over-ear"></div>
+                            <div class="checklist-text">Over-Ear</div>
                         </div>
-                        <div class="checklist-item" onclick="toggleCheck(event, 'iphone-15-pro')">
-                            <div class="checkbox" id="check-iphone-15-pro"></div>
-                            <div class="checklist-text">iPhone 15 Pro</div>
+                        <div class="checklist-item" onclick="toggleCheck(event, 'headphone-in-ear')">
+                            <div class="checkbox" id="check-headphone-in-ear"></div>
+                            <div class="checklist-text">In-Ear</div>
                         </div>
-                        <div class="checklist-item" onclick="toggleCheck(event, 'iphone-15-plus')">
-                            <div class="checkbox" id="check-iphone-15-plus"></div>
-                            <div class="checklist-text">iPhone 15 Plus</div>
+                        <div class="checklist-item" onclick="toggleCheck(event, 'headphone-on-ear')">
+                            <div class="checkbox" id="check-headphone-on-ear"></div>
+                            <div class="checklist-text">On-Ear</div>
                         </div>
-                        <div class="checklist-item" onclick="toggleCheck(event, 'iphone-15')">
-                            <div class="checkbox" id="check-iphone-15"></div>
-                            <div class="checklist-text">iPhone 15</div>
-                        </div>
-                        <div class="checklist-item" onclick="toggleCheck(event, 'iphone-14-pro-max')">
-                            <div class="checkbox" id="check-iphone-14-pro-max"></div>
-                            <div class="checklist-text">iPhone 14 Pro Max</div>
-                        </div>
-                        <div class="checklist-item" onclick="toggleCheck(event, 'iphone-14-pro')">
-                            <div class="checkbox" id="check-iphone-14-pro"></div>
-                            <div class="checklist-text">iPhone 14 Pro</div>
-                        </div>
-                        <button class="clear-all" onclick="clearCategory('iphone-models')">Clear All</button>
+                        <button class="clear-all" onclick="clearCategory('headphone-type')">Clear All</button>
                     </div>
                 </div>
-
-                <div class="menu-item" onclick="toggleDropdown('storage')">
-                    <div class="menu-item-header">
-                        <div class="menu-item-left">
-                            <div class="menu-item-icon">💾</div>
-                            <div class="menu-item-text">Storage Capacity</div>
-                        </div>
-                        <div class="dropdown-arrow" id="arrow-storage">▼</div>
-                    </div>
-                    <div class="dropdown-content" id="dropdown-storage">
-                        <div class="checklist-item" onclick="toggleCheck(event, 'storage-128gb')">
-                            <div class="checkbox" id="check-storage-128gb"></div>
-                            <div class="checklist-text">128GB</div>
-                        </div>
-                        <div class="checklist-item" onclick="toggleCheck(event, 'storage-256gb')">
-                            <div class="checkbox" id="check-storage-256gb"></div>
-                            <div class="checklist-text">256GB</div>
-                        </div>
-                        <div class="checklist-item" onclick="toggleCheck(event, 'storage-512gb')">
-                            <div class="checkbox" id="check-storage-512gb"></div>
-                            <div class="checklist-text">512GB</div>
-                        </div>
-                        <div class="checklist-item" onclick="toggleCheck(event, 'storage-1tb')">
-                            <div class="checkbox" id="check-storage-1tb"></div>
-                            <div class="checklist-text">1TB</div>
-                        </div>
-                        <button class="clear-all" onclick="clearCategory('storage')">Clear All</button>
-                    </div>
-                </div>
-
-                <div class="menu-item" onclick="toggleDropdown('condition')">
-                    <div class="menu-item-header">
-                        <div class="menu-item-left">
-                            <div class="menu-item-icon">⭐</div>
-                            <div class="menu-item-text">Condition</div>
-                        </div>
-                        <div class="dropdown-arrow" id="arrow-condition">▼</div>
-                    </div>
-                    <div class="dropdown-content" id="dropdown-condition">
-                        <div class="checklist-item" onclick="toggleCheck(event, 'condition-new')">
-                            <div class="checkbox" id="check-condition-new"></div>
-                            <div class="checklist-text">Brand New</div>
-                        </div>
-                        <div class="checklist-item" onclick="toggleCheck(event, 'condition-excellent')">
-                            <div class="checkbox" id="check-condition-excellent"></div>
-                            <div class="checklist-text">Excellent</div>
-                        </div>
-                        <div class="checklist-item" onclick="toggleCheck(event, 'condition-good')">
-                            <div class="checkbox" id="check-condition-good"></div>
-                            <div class="checklist-text">Good</div>
-                        </div>
-                        <div class="checklist-item" onclick="toggleCheck(event, 'condition-fair')">
-                            <div class="checkbox" id="check-condition-fair"></div>
-                            <div class="checklist-text">Fair</div>
-                        </div>
-                        <button class="clear-all" onclick="clearCategory('condition')">Clear All</button>
-                    </div>
-                </div>
-
-                <div class="menu-item" onclick="toggleDropdown('price')">
-                    <div class="menu-item-header">
-                        <div class="menu-item-left">
-                            <div class="menu-item-icon">💰</div>
-                            <div class="menu-item-text">Price Range</div>
-                        </div>
-                        <div class="dropdown-arrow" id="arrow-price">▼</div>
-                    </div>
-                    <div class="dropdown-content" id="dropdown-price">
-                        <div class="checklist-item" onclick="toggleCheck(event, 'price-under-500')">
-                            <div class="checkbox" id="check-price-under-500"></div>
-                            <div class="checklist-text">Under ₹..</div>
-                        </div>
-                        <div class="checklist-item" onclick="toggleCheck(event, 'price-500-800')">
-                            <div class="checkbox" id="check-price-500-800"></div>
-                            <div class="checklist-text">₹.. - ₹..</div>
-                        </div>
-                        <div class="checklist-item" onclick="toggleCheck(event, 'price-800-1200')">
-                            <div class="checkbox" id="check-price-800-1200"></div>
-                            <div class="checklist-text">₹.. - ₹..</div>
-                        </div>
-                        <div class="checklist-item" onclick="toggleCheck(event, 'price-above-1200')">
-                            <div class="checkbox" id="check-price-above-1200"></div>
-                            <div class="checklist-text">Above ₹..</div>
-                        </div>
-                        <button class="clear-all" onclick="clearCategory('price')">Clear All</button>
-                    </div>
-                </div>
-
-                <div class="menu-item" onclick="toggleDropdown('color')">
+                <div class="menu-item" onclick="toggleDropdown('headphone-color')">
                     <div class="menu-item-header">
                         <div class="menu-item-left">
                             <div class="menu-item-icon">🎨</div>
-                            <div class="menu-item-text">Color Options</div>
+                            <div class="menu-item-text">Color</div>
                         </div>
-                        <div class="dropdown-arrow" id="arrow-color">▼</div>
+                        <div class="dropdown-arrow" id="arrow-headphone-color">▼</div>
                     </div>
-                    <div class="dropdown-content" id="dropdown-color">
-                        <div class="checklist-item" onclick="toggleCheck(event, 'color-space-black')">
-                            <div class="checkbox" id="check-color-space-black"></div>
-                            <div class="checklist-text">Space Black</div>
+                    <div class="dropdown-content" id="dropdown-headphone-color">
+                        <div class="checklist-item" onclick="toggleCheck(event, 'headphone-black')">
+                            <div class="checkbox" id="check-headphone-black"></div>
+                            <div class="checklist-text">Black</div>
                         </div>
-                        <div class="checklist-item" onclick="toggleCheck(event, 'color-natural-titanium')">
-                            <div class="checkbox" id="check-color-natural-titanium"></div>
-                            <div class="checklist-text">Natural Titanium</div>
+                        <div class="checklist-item" onclick="toggleCheck(event, 'headphone-white')">
+                            <div class="checkbox" id="check-headphone-white"></div>
+                            <div class="checklist-text">White</div>
                         </div>
-                        <div class="checklist-item" onclick="toggleCheck(event, 'color-blue-titanium')">
-                            <div class="checkbox" id="check-color-blue-titanium"></div>
-                            <div class="checklist-text">Blue Titanium</div>
+                        <div class="checklist-item" onclick="toggleCheck(event, 'headphone-blue')">
+                            <div class="checkbox" id="check-headphone-blue"></div>
+                            <div class="checklist-text">Blue</div>
                         </div>
-                        <div class="checklist-item" onclick="toggleCheck(event, 'color-white-titanium')">
-                            <div class="checkbox" id="check-color-white-titanium"></div>
-                            <div class="checklist-text">White Titanium</div>
+                        <button class="clear-all" onclick="clearCategory('headphone-color')">Clear All</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Smartwatch Filters -->
+            <div class="filter-section category-filters" id="filters-smartwatch" style="display:none;">
+                <div class="menu-item" onclick="toggleDropdown('smartwatch-strap')">
+                    <div class="menu-item-header">
+                        <div class="menu-item-left">
+                            <div class="menu-item-icon">⌚</div>
+                            <div class="menu-item-text">Strap Material</div>
                         </div>
-                        <div class="checklist-item" onclick="toggleCheck(event, 'color-pink')">
-                            <div class="checkbox" id="check-color-pink"></div>
-                            <div class="checklist-text">Pink</div>
+                        <div class="dropdown-arrow" id="arrow-smartwatch-strap">▼</div>
+                    </div>
+                    <div class="dropdown-content" id="dropdown-smartwatch-strap">
+                        <div class="checklist-item" onclick="toggleCheck(event, 'smartwatch-silicone')">
+                            <div class="checkbox" id="check-smartwatch-silicone"></div>
+                            <div class="checklist-text">Silicone</div>
                         </div>
-                        <div class="checklist-item" onclick="toggleCheck(event, 'color-yellow')">
-                            <div class="checkbox" id="check-color-yellow"></div>
-                            <div class="checklist-text">Yellow</div>
+                        <div class="checklist-item" onclick="toggleCheck(event, 'smartwatch-leather')">
+                            <div class="checkbox" id="check-smartwatch-leather"></div>
+                            <div class="checklist-text">Leather</div>
                         </div>
-                        <button class="clear-all" onclick="clearCategory('color')">Clear All</button>
+                        <div class="checklist-item" onclick="toggleCheck(event, 'smartwatch-metal')">
+                            <div class="checkbox" id="check-smartwatch-metal"></div>
+                            <div class="checklist-text">Metal</div>
+                        </div>
+                        <button class="clear-all" onclick="clearCategory('smartwatch-strap')">Clear All</button>
+                    </div>
+                </div>
+                <div class="menu-item" onclick="toggleDropdown('smartwatch-compatibility')">
+                    <div class="menu-item-header">
+                        <div class="menu-item-left">
+                            <div class="menu-item-icon">🔗</div>
+                            <div class="menu-item-text">Compatibility</div>
+                        </div>
+                        <div class="dropdown-arrow" id="arrow-smartwatch-compatibility">▼</div>
+                    </div>
+                    <div class="dropdown-content" id="dropdown-smartwatch-compatibility">
+                        <div class="checklist-item" onclick="toggleCheck(event, 'smartwatch-ios')">
+                            <div class="checkbox" id="check-smartwatch-ios"></div>
+                            <div class="checklist-text">iOS</div>
+                        </div>
+                        <div class="checklist-item" onclick="toggleCheck(event, 'smartwatch-android')">
+                            <div class="checkbox" id="check-smartwatch-android"></div>
+                            <div class="checklist-text">Android</div>
+                        </div>
+                        <button class="clear-all" onclick="clearCategory('smartwatch-compatibility')">Clear All</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Cable Filters -->
+            <div class="filter-section category-filters" id="filters-cable" style="display:none;">
+                <div class="menu-item" onclick="toggleDropdown('cable-type')">
+                    <div class="menu-item-header">
+                        <div class="menu-item-left">
+                            <div class="menu-item-icon">�</div>
+                            <div class="menu-item-text">Cable Type</div>
+                        </div>
+                        <div class="dropdown-arrow" id="arrow-cable-type">▼</div>
+                    </div>
+                    <div class="dropdown-content" id="dropdown-cable-type">
+                        <div class="checklist-item" onclick="toggleCheck(event, 'cable-usb-c')">
+                            <div class="checkbox" id="check-cable-usb-c"></div>
+                            <div class="checklist-text">USB-C</div>
+                        </div>
+                        <div class="checklist-item" onclick="toggleCheck(event, 'cable-lightning')">
+                            <div class="checkbox" id="check-cable-lightning"></div>
+                            <div class="checklist-text">Lightning</div>
+                        </div>
+                        <div class="checklist-item" onclick="toggleCheck(event, 'cable-micro-usb')">
+                            <div class="checkbox" id="check-cable-micro-usb"></div>
+                            <div class="checklist-text">Micro USB</div>
+                        </div>
+                        <button class="clear-all" onclick="clearCategory('cable-type')">Clear All</button>
+                    </div>
+                </div>
+                <div class="menu-item" onclick="toggleDropdown('cable-length')">
+                    <div class="menu-item-header">
+                        <div class="menu-item-left">
+                            <div class="menu-item-icon">📏</div>
+                            <div class="menu-item-text">Length</div>
+                        </div>
+                        <div class="dropdown-arrow" id="arrow-cable-length">▼</div>
+                    </div>
+                    <div class="dropdown-content" id="dropdown-cable-length">
+                        <div class="checklist-item" onclick="toggleCheck(event, 'cable-1m')">
+                            <div class="checkbox" id="check-cable-1m"></div>
+                            <div class="checklist-text">1 Meter</div>
+                        </div>
+                        <div class="checklist-item" onclick="toggleCheck(event, 'cable-2m')">
+                            <div class="checkbox" id="check-cable-2m"></div>
+                            <div class="checklist-text">2 Meter</div>
+                        </div>
+                        <button class="clear-all" onclick="clearCategory('cable-length')">Clear All</button>
                     </div>
                 </div>
             </div>

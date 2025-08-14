@@ -1,0 +1,135 @@
+[
+    {
+        "id": "acc1",
+        "name": "AirPods Pro (2nd Gen)",
+        "description": "Active Noise Cancellation",
+        "price": 16600,
+        "originalPrice": 20750,
+        "image": "https://images.unsplash.com/photo-1606841837239-c5a1a4a07af7?w=400&h=300&fit=crop&crop=center",
+        "category": "earphones",
+        "features": ["Wireless"],
+        "stock": "In Stock",
+        "rating": 4.8
+    },
+    {
+        "id": "acc2",
+        "name": "MagSafe Power Bank",
+        "description": "10,000mAh Wireless Charging",
+        "price": 7470,
+        "originalPrice": 10770,
+        "image": "https://www.notebookcheck.net/fileadmin/_processed_/b/4/csm_UGREEN_15W_Magsafe_Power_Bank_10000mAh_I_8_e6d5d5866c.jpg",
+        "category": "powerbank",
+        "features": ["MagSafe"],
+        "stock": "In Stock",
+        "rating": 4.6
+    },
+    {
+        "id": "acc3",
+        "name": "iPhone 15 Pro Case",
+        "description": "Premium Leather Case",
+        "price": 3820,
+        "originalPrice": 4980,
+        "image": "https://images.unsplash.com/photo-1556656793-08538906a9f8?w=400&h=300&fit=crop&crop=center",
+        "category": "mobile",
+        "features": ["Leather"],
+        "stock": "In Stock",
+        "rating": 4.7
+    },
+    {
+        "id": "acc4",
+        "name": "Bluetooth Speaker",
+        "description": "Portable Wireless Speaker",
+        "price": 6640,
+        "originalPrice": 8300,
+        "image": "https://images.unsplash.com/photo-1608043152269-423dbba4e7e1?w=400&h=300&fit=crop&crop=center",
+        "category": "bluetooth speaker",
+        "features": ["Waterproof"],
+        "stock": "Limited",
+        "rating": 4.5
+    },
+    {
+        "id": "acc5",
+        "name": "USB-C to Lightning Cable",
+        "description": "6ft Fast Charging Cable",
+        "price": 2075,
+        "originalPrice": 3320,
+        "image": "https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/MQGH2?wid=4000&hei=2920&fmt=jpeg&qlt=95&.v=1618617119000",
+        "category": "cable",
+        "features": ["MFi Certified"],
+        "stock": "In Stock",
+        "rating": 4.4
+    },
+    {
+        "id": "acc6",
+        "name": "20W USB-C Adapter",
+        "description": "Fast Charging Wall Adapter for iPhone",
+        "price": 1660,
+        "originalPrice": 2490,
+        "image": "https://th.bing.com/th/id/OIP.D8WbWZupg19CbQQG0erdHQHaHa?w=189&h=188&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3",
+        "category": "adapter",
+        "features": ["20W Output"],
+        "stock": "In Stock",
+        "rating": 4.6
+    },
+    {
+        "id": "acc7",
+        "name": "Wireless Charger Pad",
+        "description": "15W Fast Wireless Charging Pad",
+        "price": 2900,
+        "originalPrice": 4150,
+        "image": "https://i5.walmartimages.com/asr/d493dbcf-87a9-49d6-a3d9-ce24b976e839.decbcde8849150199b8f1e0d47787236.jpeg",
+        "category": "charger",
+        "features": ["15W Fast Charging"],
+        "stock": "In Stock",
+        "rating": 4.3
+    },
+    {
+        "id": "acc8",
+        "name": "Bluetooth Headphones",
+        "description": "Over-ear Wireless, Headphones",
+        "price": 10800,
+        "originalPrice": 14940,
+        "image": "https://i5.walmartimages.com/asr/ad78c0bb-180b-4df3-9a1f-dbad547a818d_1.5ee3a5db8e981ed584153d5d9562005e.jpeg?odnWidth=1000&odnHeight=1000&odnBg=ffffff",
+        "category": "bluetooth",
+        "features": ["30hr Battery"],
+        "stock": "In Stock",
+        "rating": 4.7
+    }
+    ,
+    {
+        "id": "acc9",
+        "name": "Noise Cancelling Headphones",
+        "description": "Over-ear, Black, Wireless, 40hr Battery, Headphones",
+        "price": 12999,
+        "originalPrice": 15999,
+        "image": "https://m.media-amazon.com/images/I/615iJ+aVx6L.jpg",
+        "category": "headphone",
+        "features": ["Over-ear", "Black", "Wireless", "Noise Cancelling"],
+        "stock": "In Stock",
+        "rating": 4.9
+    },
+    {
+        "id": "acc10",
+        "name": "Smartwatch Pro X",
+        "description": "Silicone Strap, iOS & Android Compatible, Heart Rate Monitor",
+        "price": 17999,
+        "originalPrice": 21999,
+        "image": "https://www.victoriastore.com.br/storage/images/products/172062673224jmMrUQ.png",
+        "category": "smartwatch",
+        "features": ["Silicone", "iOS", "Android", "Heart Rate"],
+        "stock": "In Stock",
+        "rating": 4.8
+    },
+    {
+        "id": "acc11",
+        "name": "Magnetic USB-C Cable",
+        "description": "2m, Fast Charging, Braided",
+        "price": 1199,
+        "originalPrice": 1799,
+        "image": "https://tse3.mm.bing.net/th/id/OIP.V1t-txZ-dCuTHzw-NoiQQAHaHa?r=0&rs=1&pid=ImgDetMain&o=7&rm=3",
+        "category": "cable",
+        "features": ["USB-C", "2m", "Braided", "Fast Charging"],
+        "stock": "In Stock",
+        "rating": 4.5
+    }
+]

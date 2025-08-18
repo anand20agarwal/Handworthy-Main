@@ -70,3 +70,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// create a function to add to cart when i click on buy now button
+function buyNow() {
+    addToCart();
+    // Redirect to cart or checkout page
+    window.location.href = "cart.html";
+}
